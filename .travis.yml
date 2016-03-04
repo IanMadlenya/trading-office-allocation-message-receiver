@@ -24,7 +24,7 @@ deploy:
   provider: heroku
   api_key:
     secure: B66zJDS9BDiEmm++9S3XiHTQiGljD40MqhH+jaXqoV5u7uWbNXc79KAY6jgm7/Aq9mJyA4yQ9zWTivfCM+j3LT+thBEw0Kt92SdKUl2Rn8z/ELczGUdCS4i273DuoO7A1zrqunKDF90kopFjryWKusWpmZ/AHJimZ/5D5xKze+Hg9puFfv10nVi7njxRMPw14fIJRnufX7Vk4gWzX2xKjAiF4imX0QEY1Y3Y6D0Tlr+9uacNxAk1+wmBTHcuDVEVgQYzAcAghW1z2B0v/OKlcq0sS2ygnJGdjmTwUj4/jP5u8SHpitM1jXKoh78m58m1371iRAlRQoYe2lJXwSJrqaW5+f6waS+HHphxZ71u8SazI9bXVvOrjcXJXmAfJ4BnCyKcWbWp+GF9sFjLqMHWwus5O1eLIxRYTGkl+fAcXjuwahg84ZUqiX6jMEZJ9zpJtxjR4RQLARrrtgwbe2BK2APxVTt2CM2rlQo7lll0QC1+Bxu2QI/H7cYp50+rCg2pad0SX91ihZZKtOs7lBSr7vmlkkA/9ONQXadJZtKlZumPhHE5RwTgyzzqzf98W1IUpj4PkYfcjXvSRblMXhs5B93lJim/hISBzQTEn69E6zcTaC3ixVnPbssORf+4wGzVFzcAcRlJkBDCCwrbcYaIlV8XyDQWqifBVOsli3MpmSw=
-  app: trading-office-allocation-message-receiver
+  app: allocation-message-receiver
   on:
     repo: spolnik/trading-office-allocation-message-receiver
 branches:

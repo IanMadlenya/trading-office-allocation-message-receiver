@@ -19,7 +19,7 @@ Trading Office is reference implementation of microservices architecture, based 
 
 Heroku: http://allocation-message-receiver.herokuapp.com/swagger-ui.html
 
-![Component Diagram](https://raw.githubusercontent.com/spolnik/trading-office/master/design/allocation_message_receiver.png)
+![Component Diagram](https://raw.githubusercontent.com/spolnik/trading-office-allocation-message-receiver/master/design/allocation_message_receiver.png)
 
 ## Notes
 - checking if [dependencies are up to date](https://www.versioneye.com/user/projects/56ad39427e03c7003ba41427)

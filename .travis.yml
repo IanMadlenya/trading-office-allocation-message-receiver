@@ -6,31 +6,14 @@ before_install:
 after_success:
 - codecov
 - ./gradlew sonarqube
-env:
-  global:
-  - secure: A+JodfRzulrwez5TVSm2k1SQPxsis68gM22JN4nqjm4RgekfHnfWe5OoLYhdFuhgyzkUE7AnmkhcZCtYpl4/hCtRs4pZ+Hum4vtSh99dLaMOW3CpUzaBpWPtCcuEN2DP3v8hMAkbqiaSEYxfKM94CH3Ct+YH8xuaMvcYsuBRaFz2KSJXnfor+111VGGjoDSRFqMd6cpq4m0U22vUtyCBVeu8+HPRn3ySyafL7hNCBNyZgkp1KZZPD6RgzHPbjVKA9lBO27CnSBsp3uWHv5Zfee80JFsjIECRhR5djYI/mq3xtWTsdnIOTEjiT8ahwpxJBrAscapt8iTmZolaYLoe97JLFcU4qQLQGsdg6SRcCbpiTFyu7oMqcApxdb+6er9I5B4XVN329xpTZLYsMFZAzeqhZswYxAJiRPIzS79y/WFBNMwlHPHYZauAMZTPiWK/+8sr3hyrtSyuzMms3puBAAvjfDKWI4QOIoVMUxp+O3gTHi29/UpegFwgEOMYXd2CspQROx76zq0G5xGeGK5FSRnvaE27VKPKlBdyE9DT8AZxy1sP9pigHCt4E/dV+4lM5awCCCqCVP5//yFrCFiTb0vINkZjYOhuaqckkAeKRa8/yZnGeXbZ4ENL+ZqVL/PnOdqd4jCS3uTSuW2s4N5AC7bXtCuHtiEWNj/siEzndE0=
-addons:
-  coverity_scan:
-    project:
-      name: spolnik/trading-office-allocation-message-receiver
-      version: 1.0
-      description: Trading Office
-    notification_email: jacek.spolnik@gmail.com
-    build_command_prepend: ./gradlew clean
-    build_command: ./gradlew compileJava
-    branch_pattern: coverity_scan
 deploy:
-  skip_cleanup: true
   provider: heroku
   api_key:
-    secure: B66zJDS9BDiEmm++9S3XiHTQiGljD40MqhH+jaXqoV5u7uWbNXc79KAY6jgm7/Aq9mJyA4yQ9zWTivfCM+j3LT+thBEw0Kt92SdKUl2Rn8z/ELczGUdCS4i273DuoO7A1zrqunKDF90kopFjryWKusWpmZ/AHJimZ/5D5xKze+Hg9puFfv10nVi7njxRMPw14fIJRnufX7Vk4gWzX2xKjAiF4imX0QEY1Y3Y6D0Tlr+9uacNxAk1+wmBTHcuDVEVgQYzAcAghW1z2B0v/OKlcq0sS2ygnJGdjmTwUj4/jP5u8SHpitM1jXKoh78m58m1371iRAlRQoYe2lJXwSJrqaW5+f6waS+HHphxZ71u8SazI9bXVvOrjcXJXmAfJ4BnCyKcWbWp+GF9sFjLqMHWwus5O1eLIxRYTGkl+fAcXjuwahg84ZUqiX6jMEZJ9zpJtxjR4RQLARrrtgwbe2BK2APxVTt2CM2rlQo7lll0QC1+Bxu2QI/H7cYp50+rCg2pad0SX91ihZZKtOs7lBSr7vmlkkA/9ONQXadJZtKlZumPhHE5RwTgyzzqzf98W1IUpj4PkYfcjXvSRblMXhs5B93lJim/hISBzQTEn69E6zcTaC3ixVnPbssORf+4wGzVFzcAcRlJkBDCCwrbcYaIlV8XyDQWqifBVOsli3MpmSw=
-  app: allocation-message-receiver
+    secure: cv1veWcY6cpdvKLFnbqVBbe4WH2oAUoGOKzLojyypKxHoAMZM65kybJG6JQJnmOUk0izjpQ+S1XF8WORBSMWOHX6zfiwCYtt1U+OzFqq5OeGNGmOkxhZzqT2P5LOWWVS7icN6SFx11u2e8tI/t5ljj72WJSWCaHwwLkCh8TNnU5Fil7Y+QaMLNPeMgZExB2qaY6kzrJHYVTYZ7SaPbiWoyOV/lmqSFTlXK325PeP+qT1/o4eBe52q7EcjYJBTa7jwcqVpfWHyUhcoxOB6dXeT4xvozd0nDRvTXcvENi0r6O+iCd96acLEaco8fBYOND8kmxIKcO7cN/LMWh5xaw2zUf36NFNRdOCTBVNh0losLdstBKfZH+jd6iwUO8GsT/Qfuo6f3DQaleqrlhWOEoP8/Z8w2Jydw4Go1Ht0JzNWaD9MZ2fMKScOhrg9KPqxR1PH9WA2N7yuhOn4UlcMKszxZdSPeqRHDbcxtTmwhSQPLyPgYKpF8sEqC4PgFOA8DpvdyvBvK9vzM6drTEkKzLwZhIrd+byQauV03+mmRRSniUNdrqWXFT7RKwx60yR4Lgtw0nCqLaX7Ktww1Spnn//5uM5EkbwFHacS9PzRIXJx5ZjiWolVM0YKPOfZRqjql0tfMlSHORWg+sqNp26+Jzxugm+BR0K6il15eUxeO8MPxs=
+  app: allocation-receiver-staging
+  skip_cleanup: true
   on:
     repo: spolnik/trading-office-allocation-message-receiver
-branches:
-  only:
-  - master
-  - coverity_scan
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:

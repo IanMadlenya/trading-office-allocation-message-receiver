@@ -9,7 +9,8 @@ ext {
             spring: [
                 boot_actuator: 'org.springframework.boot:spring-boot-starter-actuator',
                 boot_web: 'org.springframework.boot:spring-boot-starter-web',
-                boot_amqp: 'org.springframework.boot:spring-boot-starter-amqp'
+                boot_amqp: 'org.springframework.boot:spring-boot-starter-amqp',
+                eureka_client: 'org.springframework.cloud:spring-cloud-starter-eureka'
             ],
             test: [
                     junit: 'junit:junit:4.12',

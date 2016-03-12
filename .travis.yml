@@ -17,9 +17,9 @@ deploy:
     repo: spolnik/trading-office-allocation-message-receiver
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-cache:s
+cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 services:
-  - rabbitmq
+- rabbitmq

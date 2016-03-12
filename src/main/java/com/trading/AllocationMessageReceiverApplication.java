@@ -102,7 +102,7 @@ public class AllocationMessageReceiverApplication {
     }
 
     @Bean
-    FixmlAllocationMessageReceiver receiver(RabbitTemplate rabbitTemplate, FixmlMessageParser parser) throws FixmlParserException {
+    FixmlAllocationMessageReceiver receiver(RabbitTemplate rabbitTemplate, FixmlMessageParser parser) {
         rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
         return new FixmlAllocationMessageReceiver(rabbitTemplate, parser::parse);
     }

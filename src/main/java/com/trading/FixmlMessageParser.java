@@ -40,7 +40,7 @@ class FixmlMessageParser {
     private static final String FIX_TRADE_SIDE_SELL = "2";
     private static final String FIX_TRADE_SIDE_BUY = "1";
 
-    public Allocation parse(String message) throws FixmlParserException {
+    Allocation parse(String message) {
 
         StringReader stringReader = new StringReader(message);
 
@@ -95,7 +95,7 @@ class FixmlMessageParser {
         allocation.setPrice(new BigDecimal(price.get().getValue()));
     }
 
-    private static void checkStatus(Document fixmlMessage) throws JaxenException, FixmlParserException {
+    private static void checkStatus(Document fixmlMessage) throws JaxenException {
         Optional<Attribute> status = getAttribute(fixmlMessage, ALLOCATION_STATUS_XPATH);
 
         String value = status.get().getValue();
@@ -115,7 +115,7 @@ class FixmlMessageParser {
         allocation.setTradeSide(deriveTradeSide(side));
     }
 
-    private static void checkSecurityIdSource(Document fixmlMessage) throws JaxenException, FixmlParserException {
+    private static void checkSecurityIdSource(Document fixmlMessage) throws JaxenException {
         Optional<Attribute> instrumentIdSource = getAttribute(fixmlMessage, INSTRUMENT_ID_SOURCE_XPATH);
 
         String value = instrumentIdSource.get().getValue();
@@ -135,7 +135,7 @@ class FixmlMessageParser {
         allocation.setAllocationId(id.get().getValue());
     }
 
-    private static void checkTransactionType(Document fixmlMessage) throws JaxenException, FixmlParserException {
+    private static void checkTransactionType(Document fixmlMessage) throws JaxenException {
         Optional<Attribute> transactionType = getAttribute(fixmlMessage, TRANSACTION_TYPE_XPATH);
 
         String value = transactionType.get().getValue();

@@ -22,7 +22,7 @@ public class FixmlAllocationMessageReceiver {
         this.parse = parse;
     }
 
-    public void handleMessage(String message) throws FixmlParserException, JsonProcessingException {
+    public void handleMessage(String message) throws JsonProcessingException {
         LOG.info("Received: " + message);
 
         Allocation allocation = parse.apply(message);
@@ -30,7 +30,7 @@ public class FixmlAllocationMessageReceiver {
         amqpTemplate.convertAndSend("trading-office-exchange", "received.json.allocation.report", allocationAsJson);
     }
 
-    private static String toJson(Allocation allocation) throws FixmlParserException, JsonProcessingException {
+    private static String toJson(Allocation allocation) throws JsonProcessingException {
         LOG.info("Received: " + allocation.getAllocationId());
 
         String allocationReportAsJson = OBJECT_MAPPER.writeValueAsString(allocation);

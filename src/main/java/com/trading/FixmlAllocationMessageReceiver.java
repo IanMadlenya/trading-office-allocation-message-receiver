@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 
+import java.util.function.Function;
+
 public class FixmlAllocationMessageReceiver {
 
     private static final Logger LOG = LoggerFactory.getLogger(FixmlAllocationMessageReceiver.class);
@@ -13,17 +15,17 @@ public class FixmlAllocationMessageReceiver {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private final AmqpTemplate amqpTemplate;
-    private final FixmlMessageParser parser;
+    private final Function<String, Allocation> parse;
 
-    public FixmlAllocationMessageReceiver(AmqpTemplate amqpTemplate, FixmlMessageParser parser) {
+    public FixmlAllocationMessageReceiver(AmqpTemplate amqpTemplate, Function<String, Allocation> parse) {
         this.amqpTemplate = amqpTemplate;
-        this.parser = parser;
+        this.parse = parse;
     }
 
     public void handleMessage(String message) throws FixmlParserException, JsonProcessingException {
         LOG.info("Received: " + message);
 
-        Allocation allocation = parser.parse(message);
+        Allocation allocation = parse.apply(message);
         String allocationAsJson = toJson(allocation);
         amqpTemplate.convertAndSend("trading-office-exchange", "received.json.allocation.report", allocationAsJson);
     }

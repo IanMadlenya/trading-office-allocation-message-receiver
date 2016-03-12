@@ -1,12 +1,12 @@
 package com.trading;
 
-class FixmlParserException extends Exception {
+class FixmlParserException extends RuntimeException {
 
-    public FixmlParserException(String message) {
+    FixmlParserException(String message) {
         super(message);
     }
 
-    public FixmlParserException(Throwable cause) {
+    FixmlParserException(Throwable cause) {
         super(cause);
     }
 }

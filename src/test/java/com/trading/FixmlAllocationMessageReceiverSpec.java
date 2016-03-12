@@ -24,7 +24,7 @@ public class FixmlAllocationMessageReceiverSpec {
 
         when(parser.parse(DUMMY)).thenReturn(allocation);
 
-        receiver = new FixmlAllocationMessageReceiver(amqpTemplate, parser);
+        receiver = new FixmlAllocationMessageReceiver(amqpTemplate, parser::parse);
     }
 
     @Test

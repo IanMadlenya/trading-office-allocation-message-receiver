@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AllocationMessageReceiverIntegrationTest {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private CachingConnectionFactory connectionFactory;
+    private RabbitTemplate template;
 
     @Before
     public void setUp() throws Exception {
@@ -26,7 +26,7 @@ public class AllocationMessageReceiverIntegrationTest {
     }
 
     private void setupRabbitMq() {
-        connectionFactory = new CachingConnectionFactory();
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri("amqp://guest:guest@localhost");
 
         AmqpAdmin admin = new RabbitAdmin(connectionFactory);
@@ -35,12 +35,13 @@ public class AllocationMessageReceiverIntegrationTest {
         admin.declareQueue(queue);
         Binding binding = BindingBuilder.bind(queue).to(exchange).with("received.json.allocation.report");
         admin.declareBinding(binding);
+
+        template = new RabbitTemplate(connectionFactory);
     }
 
     @Test
     public void send_fixml_message_and_receive_allocation() throws Exception {
 
-        RabbitTemplate template = new RabbitTemplate(connectionFactory);
         template.convertAndSend("trading-office-exchange", "incoming.fixml.allocation.report", TestData.FIXML_ALLOCATION_REPORT_MESSAGE);
         template.setMessageConverter(new Jackson2JsonMessageConverter());
 

@@ -22,12 +22,15 @@ public class AllocationMessageReceiverIntegrationTest {
     public void setUp() throws Exception {
         AllocationMessageReceiverApplication.main(new String[] {});
 
+        setupRabbitMq();
+    }
+
+    private void setupRabbitMq() {
         connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri("amqp://guest:guest@localhost");
 
         AmqpAdmin admin = new RabbitAdmin(connectionFactory);
         TopicExchange exchange = new TopicExchange("trading-office-exchange");
-        admin.declareExchange(exchange);
         Queue queue = new Queue("received.json.allocation.report");
         admin.declareQueue(queue);
         Binding binding = BindingBuilder.bind(queue).to(exchange).with("received.json.allocation.report");
